@@ -1,36 +1,43 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
+// import {} from './store';
 import Body from './components/body';
 import Header from './components/header';
 import Footer from './components/footer';
 
 class App extends Component {
+  
   render() {
 
     const container = {
-      height: '100vh',
+      minHeight: '100vh',
       width: '100vw',
       display: 'flex',
-      flexDirection: 'column'
-    }
-
-    const footerStyle = {
-      background: '#00bfff',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontSize: '22px'
+      flexDirection: 'column',
+      overflowY: 'scroll'
     }
 
     return (
       <div style={container}>
         <Header/>
-        <Body>some stuff and things</Body>
-        <Footer css={footerStyle}></Footer>
+        <Body/>
+        <Footer/>
       </div>
     )
   }
 }
 
-export default App;
+// sets our initial state to this component's props
+function mapToProps(state) {
+  return {
+    appColorPattern: state.appColors
+  }
+}
+
+// allows us to update values in store
+function dispatchToProps() {
+  return {}
+}
+
+export default connect(mapToProps, dispatchToProps)(App);

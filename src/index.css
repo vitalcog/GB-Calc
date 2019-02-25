@@ -2,4 +2,18 @@ body, body > * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 900px) {
+  .detailsContainer {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .detailsCard {
+    max-width: 90vw;
+  }
+  .rightSideHeaderImgs {
+    display: none !important;
+  }
 }

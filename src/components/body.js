@@ -1,34 +1,47 @@
 import React, { Component } from 'react';
-import faker from 'faker';
+import { connect } from 'react-redux';
+import ComparisonWrapper from './comparison/comparisonWrapper';
 
-class Body extends Component {
-    constructor(props) {
-        super()
-    }
+class body extends Component {
 
     render() {
 
+        const color = this.props.colorPattern
+
         const bodyStyle = {
-            fontSize: '24px',
-            color: 'white',
-            background: 'blue',
+            padding: '20px 0 30px 0',
+            background: `${color.mdGray}`,
             flexGrow: '1',
-            overFlowX: 'scroll',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
         }
 
-        const pStyle = {
-            margin: '0px'
-        }
+        const array = ["vertical", "horizontal"];
 
         return (
             <div style={bodyStyle}>
-                {this.props.children}
-                <p style={pStyle}>this is newComp</p>
-                {faker.fake("{{company.companyName}}")}
+                {array.map( (i, count)=> {
+                    return <ComparisonWrapper installType={i} key={count}/>
+                })}
             </div>
         )
     }
 
 }
   
-export default Body;
+// sets our initial state to this component's props
+function mapToProps(state) {
+    return {
+      colorPattern: state.appColors,
+      fakeStuff: state.fakeData,
+      competitor: state.competitorName
+    }
+  }
+  
+  // allows us to update values in store
+  function dispatchToProps() {
+      return {}
+  }
+  
+  export default connect(mapToProps, dispatchToProps)(body);
