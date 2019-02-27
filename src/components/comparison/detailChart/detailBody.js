@@ -77,12 +77,17 @@ class DetailBody extends Component {
         }
 
         console.log('unitData',this.props.unitData)
-        function showValue(arg) {
-            if(arg != NaN) {
+
+        function showValue(arg) { // used to prevent diplaying NaN client-side
+            if(isNaN(arg) === false ) {
                 return arg
             }
         }
+
         const pricePerSf = (this.props.unitData.laborCost/1000).toFixed(3)
+        
+        const extLabCost = this.props.unitData.extendedLaborCost
+
         return (
             <div style={wrapper}>
                 {/* first row */}
@@ -91,13 +96,13 @@ class DetailBody extends Component {
 
                 {/* second row */}
                 <div style={sideLabel}>NGC GridMax</div>
-                <PriceUnit style={topLeft}>${pricePerSf}</PriceUnit>
-                <PriceUnit style={topRight}>${this.props.unitData.extendedLaborCost}</PriceUnit>
+                <PriceUnit style={topLeft}>${showValue(pricePerSf)}</PriceUnit>
+                <PriceUnit style={topRight}>${showValue(extLabCost)}</PriceUnit>
 
                 {/* third row */}
                 <div style={sideLabelTwo}>Competitor</div>
-                <PriceUnit style={bottomLeft}>${pricePerSf}</PriceUnit>
-                <PriceUnit style={bottomRight}>${this.props.unitData.extendedLaborCost}</PriceUnit>
+                <PriceUnit style={bottomLeft}>${showValue(pricePerSf)}</PriceUnit>
+                <PriceUnit style={bottomRight}>${showValue(extLabCost)}</PriceUnit>
             </div>
         )
     }

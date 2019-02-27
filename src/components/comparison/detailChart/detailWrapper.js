@@ -13,6 +13,7 @@ class DetailsWrapper extends Component {
         const specificData = {}
 
         if (this.props.data != undefined) {
+            // currently doesn't offer different values but is properly set up to
             switch (type) {
                 case 'Labor':
                     specificData.laborCost = this.props.data.labor_cost_per_square_foot;
