@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import DetailTitle from './detailTitle';
 import DetailBody from './detailBody';
 import DetailFooter from './detailFooter';
-import { connect } from 'react-redux';
 
 class DetailsWrapper extends Component {
 
@@ -12,7 +11,7 @@ class DetailsWrapper extends Component {
         console.log('type', type)
         const specificData = {}
 
-        if (this.props.data != undefined) {
+        if (this.props.data !== undefined) {
             // currently doesn't offer different values but is properly set up to
             switch (type) {
                 case 'Labor':
